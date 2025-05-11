@@ -1,6 +1,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
+# Set environment to Production
+ENV ASPNETCORE_ENVIRONMENT=Production
+
 # Copy everything
 COPY *.csproj ./
 RUN dotnet restore
