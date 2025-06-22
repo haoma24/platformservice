@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Caching.StackExchangeRedis;
+using PlatformService.Data.Caching;
 using PlatformService.Models;
 
 namespace PlatformService.Data
@@ -5,9 +7,11 @@ namespace PlatformService.Data
     public class PlatformRepo : IPlatformRepo
     {
         private readonly AppDbContext _context;
-        public PlatformRepo(AppDbContext context)
+        private readonly IRedisCachingService _redisCache;
+        public PlatformRepo(AppDbContext context, IRedisCachingService redisCache)
         {
             _context = context;
+            _redisCache = redisCache;
         }
 
         public void CreatePlatform(Platform plat)

@@ -1,4 +1,5 @@
 using AutoMapper;
+using PlatformService.CQRS.Platform.CreatePlatform;
 using PlatformService.Dtos;
 using PlatformService.Models;
 
@@ -12,6 +13,7 @@ namespace PlatformService.Profiles
             CreateMap<Platform, PlatformReadDto>();
             CreateMap<PlatformCreateDto, Platform>();
             CreateMap<PlatformReadDto, PlatformPublishedDto>();
+            CreateMap<CreatePlatformCommand, Platform>();
             CreateMap<Platform, GrpcPlatformModel>()
                 .ForMember(dest => dest.PlatformId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
